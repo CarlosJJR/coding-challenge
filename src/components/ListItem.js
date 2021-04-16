@@ -12,6 +12,12 @@ class ListItem extends Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const isSameSelectedState = nextProps.item.value === this.props.item.value;
+    const displayModeChanged = nextState.displayMode === this.state.displayMode;
+    return !isSameSelectedState || !displayModeChanged;
+  }
+
   render() {
     console.log('Render ListItem ', this.props.item.index + 1);
     if (this.state.displayMode === READ) {
